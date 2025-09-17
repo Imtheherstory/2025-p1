@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>메인 - 목장 출석체크</title>
+  <link rel="stylesheet" th:href="@{/css/index.css}">
+  <!-- 아이콘 라이브러리 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img th:src="@{/images/테스트용이미지.png}" alt="effectree 로고" class="logo">
+      <h1>목장 출석체크 시스템</h1>
+    </header>
+
+    <main>
+      <div class="menu">
+        <a th:href="@{/member/attendance}" class="btn">
+          <i class="fa-solid fa-clipboard-check"></i> 출석체크
+        </a>
+        <a th:href="@{/members}" class="btn">
+          <i class="fa-solid fa-user-pen"></i> 목원정보 수정
+        </a>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

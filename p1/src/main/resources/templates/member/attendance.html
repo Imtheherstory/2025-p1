@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>출석체크 - 목장 출석체크</title>
+  <link rel="stylesheet" th:href="@{/css/attendance.css}">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>출석체크</h1>
+    </header>
+
+    <form th:action="@{/attendance/save}" method="post">
+
+      <!-- ✅ 출석 날짜 -->
+      <div class="form-field">
+        <label for="date">출석 날짜</label>
+        <input type="date" id="date" name="attendanceDate" required>
+      </div>
+
+      <!-- ✅ 목원별 출석체크 -->
+      <div class="member-list">
+        <h2>목원 출석체크</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>이름</th>
+              <th>예배 시간</th>
+              <th>참석 방식</th>
+              <th>출석</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="member : ${memberList}">
+              <!-- 이름 -->
+              <td th:text="|${member.member_name} (${member.member_age})|">홍길동</td>
+
+
+              <!-- 예배 시간 선택 -->
+              <td>
+                <select th:name="'serviceTime_' + ${member.member_idx}" required>
+                  <option value="">선택</option>
+                  <option value="1부">1부</option>
+                  <option value="2부">2부</option>
+                  <option value="3부">3부</option>
+                  <option value="4부">4부</option>
+                  <option value="5부">5부</option>
+                </select>
+              </td>
+
+              <!-- 참석 방식 선택 -->
+              <td>
+                <select th:name="'serviceType_' + ${member.member_idx}" required>
+                  <option value="">선택</option>
+                  <option value="온라인">온라인</option>
+                  <option value="오프라인">오프라인</option>
+                </select>
+              </td>
+
+              <!-- 출석 체크박스 -->
+              <td>
+                <input type="checkbox" th:name="'attend_' + ${member.member_idx}" value="Y">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="actions">
+        <button type="submit">저장</button>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>
